@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../dummy_data.dart';
 
-class MealDetailScreen extends StatelessWidget {
+class MealDetailScreen extends StatefulWidget {
+  final Function isFav;
+  final Function toggleFav;
+  MealDetailScreen(this.isFav, this.toggleFav);
+
+  @override
+  _MealDetailScreenState createState() => _MealDetailScreenState();
+}
+
+class _MealDetailScreenState extends State<MealDetailScreen> {
   Widget _showLabel(BuildContext context, String text) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -84,6 +93,13 @@ class MealDetailScreen extends StatelessWidget {
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child:
+            widget.isFav(mealId) ? Icon(Icons.star) : Icon(Icons.star_border),
+        onPressed: () {
+          widget.toggleFav(mealId);
+        },
       ),
     );
   }
