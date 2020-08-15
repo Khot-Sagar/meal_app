@@ -18,7 +18,9 @@ class _FiltersScreenState extends State<FiltersScreen> {
       value: value,
       subtitle: Text(subTitle),
       onChanged: (newValue) {
-        value = newValue;
+        setState(() {
+          value = newValue;
+        });
       },
     );
   }
@@ -33,9 +35,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
       body: Column(
         children: <Widget>[
           Container(
+            margin: EdgeInsets.symmetric(vertical: 15),
             child: Text(
               'Setup Filters',
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.headline3,
             ),
           ),
           Expanded(
